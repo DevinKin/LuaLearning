@@ -77,4 +77,45 @@
     io.write(page)
     ```
 
-    
+- Lua会自动在string和numbers之间自动进行类型转换。当一个字符串使用算数操作符时，string就会被转成数字。
+
+  ```lua
+  print("10" + 1)
+  print("10 + 1")
+  -- print("-5.3e - 10" * 2)
+  -- print("hello" + 1)
+  ```
+
+- `..`在Lua中是字符串连接符，当一个数字后面写`..`时，必须加上空格以防止被解释错。
+
+  ```lua
+  print(10 .. 20)
+  ```
+
+- 函数`tonumber()`显式的将string转换成数字，如果string不是正确的数字，该函数返回`nil`。
+
+  ```lua
+  line = io.read()
+  n = tonumber(line)
+  if n == nil then
+      error(line .. " is not a valid number ")
+  else
+      print(n * 2)
+  end
+  ```
+
+- 函数`tostring()`将数字转换成字符串。
+
+  ```lua
+  print(tostring(10) == "10")
+  print(10 .. "" == "10")
+  ```
+
+## Functions
+
+- 函数是第一类值（和其他变量相同），意味着函数可以存储在变量中，可以作为函数的参数，也可以作为函数的返回值。
+
+## Userdata and Threads
+
+- userdata可以将C数据存放在Lua变量中，userdata在Lua中除了赋值和相等比较外没有预定义的操作。
+- userdata用来描述应用程序或者使用C实现的库创建的新类型。
